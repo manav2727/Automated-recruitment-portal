@@ -13,7 +13,7 @@ class Post(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
 
     def __str__(self):
-        return str(self.content[:20])
+        return str(self.content[:500])
 
     def num_likes(self):
         return self.liked.all().count()
@@ -22,7 +22,7 @@ class Post(models.Model):
         return self.comment_set.all().count()
     
     def snippet(self):
-        return self.content[:100] + "..."
+        return self.content
 
     class Meta:
         ordering = ('-created',)
